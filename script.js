@@ -9,17 +9,18 @@ const tabs=document.querySelectorAll('.operations__tab');
 const tabsContainer=document.querySelector('.operations__tab-container');
 const tabsContent=document.querySelectorAll('.operations__content');
 
-const navlinks=document.querySelector('.nav__links');
+const navlinks = document.querySelector(".nav__links");
+const navlink = document.querySelector(".nav__link");
+
 
 ///////////////////////////////////////
-// Modal window
+//1= Modal window
 
 const openModal=function(e){
  e.preventDefault();
  modal.classList.remove('hidden');
  overlay.classList.remove('hidden');
 }
-
 const closeModal=function(){
  modal.classList.add('hidden');
  overlay.classList.add('hidden');
@@ -39,10 +40,9 @@ document.addEventListener('keydown',(e)=>{
 })
 
 ///////////////////////////////////////
-// Button scrolling
+// 2=Button scrolling
 
 btnScrollTo.addEventListener('click',(e)=>{
-
 // console.log(e.target.getBoundingClientRect());
 // const s1coords=section1.getBoundingClientRect();
 // console.log(s1coords);
@@ -62,8 +62,9 @@ btnScrollTo.addEventListener('click',(e)=>{
 // })
 section1.scrollIntoView({behavior:'smooth'});
 })
+
 ///////////////////////////////////////
-// Page navigation
+// 3=Page navigation
 // document.querySelectorAll('.nav__link').forEach(function (el) {
 //   el.addEventListener('click', function (e) {
 //     e.preventDefault();
@@ -76,16 +77,19 @@ section1.scrollIntoView({behavior:'smooth'});
 // 1. Add event listener to common parent element
 // 2. Determine what element originated the event
 
+// Event delegation
+
 navlinks.addEventListener('click',(e)=>{
   e.preventDefault();
   // Matching strategy
   if(e.target.classList.contains('nav__link')){
    const id=e.target.getAttribute('href')
-   document.querySelector(id).scrollIntoView({behavior:'smooth'})  
+   const idEl=document.querySelector(id);
+   idEl.scrollIntoView({behavior:'smooth'})  
   }
 });
 ///////////////////////////////////////
-// Tabbed component
+// 4=Tabbed component
 
 tabsContainer.addEventListener('click',(e)=>{
   const clicked = e.target.closest(".operations__tab");
@@ -103,8 +107,9 @@ tabsContainer.addEventListener('click',(e)=>{
   // Activate content area
   document.querySelector(`.operations__content--${clicked.dataset.tab}`).classList.add('operations__content--active')
 })
+
 ///////////////////////////////////////
-// Menu fade animation
+// 5=Menu fade animation
 const handleHover=function(e){
   if(e.target.classList.contains('nav__link')){
     const link=e.target;
@@ -128,7 +133,7 @@ nav.addEventListener('mouseout',handleHover.bind(1));
 // Sticky navigation: Intersection Observer API
 
 
-// Creating and inserting elements
+// 6=Creating and inserting elements
 
 const header=document.querySelector('.header')
 
@@ -155,6 +160,76 @@ document.querySelector('.btn--close-cokie').addEventListener('click',()=>{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// TRAINING
+//////////////////////
+/////////////////////
+//////////////////////
+
+
+// const h1 = document.querySelector("h1")
+// h1.addEventListener("mouseenter", (e) => {
+//   alert("Good you are reading");
+// });
+
+// h1.onmouseenter=()=>{
+//   alert('welcome')
+// }
+
+// const alert11=function(e){
+//   alert('alert alert' );
+//   // h1.removeEventListener('mouseenter',alert11)
+// }
+// h1.addEventListener('mouseenter',alert11)
+
+
+// setTimeout(() => {
+//   h1.removeEventListener("mouseenter", alert11);
+// }, 3000);
+
+// const randomInt=(min,max)=>Math.floor(Math.random()*(max-min+1)+min)
+
+// const randomCol = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+//   console.log(randomCol());
+
+// navlink.addEventListener(
+//   "click",
+//   function (e) {
+//     this.style.backgroundColor = randomCol();
+//     console.log("LINK", e.target, e.currentTarget);
+//     console.log(e.currentTarget === this);
+//     // e.stopPropagation()
+//   },
+//   true
+// );
+// navlinks.addEventListener(
+//   "click",
+//   function (e) {
+//     this.style.backgroundColor = randomCol();
+//     console.log("CON", e.target, e.currentTarget);
+//     console.log(e.currentTarget === this);
+//   },
+//   true
+// );
+
+// nav.addEventListener('click',function (e){
+//   this.style.backgroundColor= randomCol()
+//   console.log("NAV", e.target, e.currentTarget);
+//   console.log(e.currentTarget === this);
+// },true)
 
 
 ///////////////////////////////////////
